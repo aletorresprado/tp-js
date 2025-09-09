@@ -140,26 +140,26 @@ console.log(`El area del Rectangulo 2 es: ${rectangulo2.area()}`);
 console.log(`El area del Rectangulo 3 es: ${rectangulo3.area()}`);
 
 //4 
-class producto {
-    constructor (codigo, nombre, precio){
+class Producto{
+    constructor(codigo, nombre, precio){
         this._codigo = codigo;
         this._nombre = nombre;
         this._precio = precio;
     }
-   imprimir(){`${codigo} - ${nombre} - $${precio}`}
+    imprimirDatos(){
+        return `${this._codigo}, ${this._nombre}, ${this._precio}`
+    };
+    
 }
 
-let objeto1 = new producto('001','Tijera de podar', '45000');
-let objeto2 = new producto('002','Rastrillo', '15000');
-let objeto3 = new producto('003','Alambre San Martin', '4500');
+let producto1 = new Producto("001", "Zapatilla New", 500)
+let producto2 = new Producto("001", "Zapatilla Zeus", 700)
+let producto3 = new Producto("003", "Zapatilla Pegazus", 400)
 
-const productos = [objeto1, objeto2, objeto3];
+let productos = [producto1, producto2, producto3]
 
-console.log("--- Usando bucle for ---");
-for (let i = 0; i < productos.length; i++) {
-console.log(`Código: ${productos[i]._codigo} | Nombre: ${productos[i]._nombre} | Precio: $${productos[i]._precio}`);
-document.write(`Código: ${productos[i]._codigo} | Nombre: ${productos[i]._nombre} | Precio: $${productos[i]._precio} </br>`);
-}
+
+productos.forEach(p => console.log(p.imprimirDatos()));
 
 //5
 
@@ -238,3 +238,63 @@ let nacimiento = parseInt(prompt("Ingresa tu año de nacimiento"));
 let persona1 = new Persona(nombre, edad, dni, sexo, peso, altura, nacimiento)
 
 persona1.mostrarDatos();
+
+//06
+
+class Libro{
+    constructor(isbn, titulo, autor, paginas){
+        this._isbn = isbn;
+        this._titulo = titulo;
+        this._autor = autor;
+        this._paginas = paginas;
+
+    }
+    get isbn(){
+        return this._isbn;
+    }
+    get titulo(){
+        return this._titulo;
+    }
+    get autor(){
+        return this._autor;
+    }
+    get paginas(){
+        return this._paginas;
+    }
+    mostrarLibro(){
+        return(`${this._isbn}, ${this.titulo}, ${this._autor}, ${this._paginas}`)
+    }
+    set isbn(nuenoIsbn){
+        return this._isbn = nuenoIsbn;
+    }
+    set titulo(nuevoTitulo){
+        return this._titulo = nuevoTitulo;
+    }
+    set autor(nuevoAutor){
+        return this._autor = nuevoAutor;
+    }
+    set paginas(nuevoPaginas){
+        return this._paginas = nuevoPaginas;
+    }
+}
+
+let libro1 = new Libro(3453345, "Un Mundo Nuevo", "Ale Torres", 333)
+let libro2 = new Libro(3456768, "Tomamos cafe y cerramos trato", "Ale Torres", 321)
+
+let libros = [libro1, libro2]
+libros.forEach(p => console.log(p.mostrarLibro()));
+
+libro1._isbn = 1000001
+libro1._titulo = "La tristeza de la política"
+libro1._autor = "El hombre del futuro"
+libro1._paginas = 777
+
+console.log(libro1.mostrarLibro())
+
+if (libro1.paginas > libro2.paginas) {
+    console.log(`El libro "${libro1.titulo}" tiene más páginas (${libro1.paginas}) que "${libro2.titulo}" (${libro2.paginas}).`);
+} else if (libro2.paginas > libro1.paginas) {
+    console.log(`El libro "${libro2.titulo}" tiene más páginas (${libro2.paginas}) que "${libro1.titulo}" (${libro1.paginas}).`);
+} else {
+    console.log(`Ambos libros tienen la misma cantidad de páginas: ${libro1.paginas}.`);
+}
